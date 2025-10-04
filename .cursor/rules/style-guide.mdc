@@ -1,0 +1,964 @@
+---
+description: Defines best practices for writing effective Cursor commands.
+globs:
+alwaysApply: true
+---
+
+# Command Style Guide
+
+This guide defines best practices for writing effective Cursor commands.
+
+## Core Principles
+
+1. **Conciseness Over Completeness** - Target 100-150 lines. Never exceed 250 lines.
+2. **Clarity Over Comprehensiveness** - Be precise, not exhaustive.
+3. **Actionable Over Theoretical** - Focus on what to do, not abstract concepts.
+4. **Adaptable Over Prescriptive** - Provide frameworks, not rigid templates.
+5. **Consistent Structure** - Follow the standard format below.
+
+## Standard Command Structure
+
+Every command should follow this format:
+
+```markdown
+# Command Name
+
+**Role Definition:** You are a [specific role] who [core responsibility]. Your expertise includes [key capabilities].
+
+## Purpose & Scope
+
+When to use this command:
+
+- [Use case 1]
+- [Use case 2]
+- [Use case 3]
+
+Adapt depth based on context:
+
+- **Level 1:** [Scope description]
+- **Level 2:** [Scope description]
+
+## Analysis Approach
+
+### 1. [Analysis Area]
+
+[2-3 sentences describing what to analyze]
+
+Key focus:
+
+- [Specific item 1]
+- [Specific item 2]
+- [Specific item 3]
+
+### 2. [Analysis Area]
+
+[Continue pattern...]
+
+## Output Requirements
+
+Structure your response as:
+
+**[Section Name]:**
+
+- [What to include]
+- [Key elements]
+
+**[Section Name]:**
+
+- [What to include]
+- [Key elements]
+
+## Guidelines
+
+**Tone & Style:**
+
+- [Tone guidance - 2-3 bullet points]
+
+**Specificity:**
+
+- [Concrete requirements - 2-3 bullet points]
+
+**Examples:**
+
+- [When/how to use examples]
+```
+
+## Writing Rules
+
+### Length Targets
+
+- **Ideal:** 100-150 lines
+- **Maximum:** 250 lines
+- **Minimum:** 50 lines (if shorter, consider merging with another command)
+
+**Why:** Commands must be token-efficient and scannable. Longer commands dilute key messages.
+
+### Role Definition (Required)
+
+**Format:** `**Role Definition:** You are a [role] who [responsibility]...`
+
+**Good:**
+
+```markdown
+**Role Definition:** You are a refactoring strategist who designs safe, incremental code transformations across large codebases.
+```
+
+**Bad:**
+
+```markdown
+You will help with refactoring. You should be good at code.
+```
+
+**Rules:**
+
+- Use present tense ("you are", not "you will be")
+- Be specific about expertise
+- One sentence, maximum two
+- Define the perspective and authority level
+
+### Section Organization
+
+**Required Sections (in order):**
+
+1. Role Definition
+2. Purpose & Scope
+3. Analysis Approach
+4. Output Requirements
+5. Guidelines
+
+**Optional Sections:**
+
+- Examples (when helpful)
+- Common Pitfalls (for complex tasks)
+- Tool Usage (if specific tools needed)
+
+### Bulleted Lists
+
+**Good:**
+
+```markdown
+**Readability Assessment:**
+
+- Is code clear and well-structured?
+- Are names descriptive and consistent?
+- Is complex logic documented?
+```
+
+**Bad:**
+
+```markdown
+**Readability Assessment:**
+
+- Is the code clear, well-structured, easy to understand, properly formatted, and following conventions?
+- Are variables, functions, classes, interfaces, types, and all other identifiers named descriptively?
+```
+
+**Rules:**
+
+- One idea per bullet
+- Maximum 5-7 items per list
+- Keep bullets concise (under 15 words)
+- Use sub-bullets sparingly (max 2 levels deep)
+
+### Output Format Specifications
+
+**Good (Flexible):**
+
+```markdown
+Structure your review with:
+
+- Overview summarizing findings
+- Detailed issues organized by severity
+- Specific recommendations with examples
+```
+
+**Bad (Over-prescribed):**
+
+```markdown
+### ✅ **Strengths**
+
+- List what the code does well
+- Highlight good practices
+
+### ⚠️ **Issues Found**
+
+For each issue provide:
+
+- **Category**: (Type)
+- **Severity**: Level
+- **Description**: Text
+- **Location**: Lines
+- **Impact**: Description
+```
+
+**Rules:**
+
+- Describe desired content, not exact formatting
+- Allow AI to adapt to context
+- Avoid rigid templates with many required fields
+- Trust the AI to organize appropriately
+
+### Examples & Code
+
+**When to include examples:**
+
+- For clarifying ambiguous instructions
+- For demonstrating non-obvious patterns
+- For showing common mistakes to avoid
+
+**How many:**
+
+- 1-2 examples maximum per concept
+- Show "good" and "bad" when helpful
+- Keep examples brief (3-5 lines)
+
+**Format:**
+
+````markdown
+**Good:**
+
+```markdown
+Clear, concise example
+```
+
+**Bad:**
+
+```markdown
+Problematic example
+```
+````
+
+### Tone Guidance
+
+**Be specific about communication style:**
+
+**Good:**
+
+```markdown
+**Tone:**
+
+- Constructive and supportive
+- Evidence-based with specific examples
+- Acknowledge good practices
+```
+
+**Bad:**
+
+```markdown
+**Tone:**
+
+- Be nice and helpful
+```
+
+**Rules:**
+
+- Define 3-5 key tone attributes
+- Be specific, not generic
+- Match tone to command purpose
+- Include both positive and critical aspects
+
+### Repetition & DRY
+
+**Avoid repeating common instructions across commands:**
+
+❌ Don't repeat in every command:
+
+- "Search git history for context"
+- "Provide specific file paths and line numbers"
+- "Show before/after code examples"
+
+✅ Instead:
+
+- State once in relevant section
+- Reference shared conventions
+- Assume baseline AI capabilities
+
+**Common instructions to avoid:**
+
+- "Be specific" (assume this)
+- "Use code examples" (mention when NOT to)
+- "Cite evidence" (implied for analysis)
+
+### Context Adaptation
+
+**Include scope levels when appropriate:**
+
+```markdown
+Adapt depth based on context:
+
+- **Quick Review:** Focus on critical issues
+- **Deep Analysis:** Comprehensive evaluation
+- **Specific Focus:** Target [particular aspect]
+```
+
+**Rules:**
+
+- Define 2-4 depth levels
+- Make levels meaningfully different
+- Indicate when to use each level
+
+## Common Mistakes
+
+### ❌ Mistake: Excessive Detail
+
+**Problem:**
+
+```markdown
+### 4. Performance Analysis
+
+**Algorithmic Complexity:**
+For each function:
+
+- Calculate time complexity (Big O notation)
+- Calculate space complexity
+- Identify nested loops that could be optimized
+- Find repeated computations that could be cached
+- Look for O(n²) algorithms replaceable with O(n log n)
+- Check for unnecessary allocations
+- Examine recursion depth
+- Evaluate memoization opportunities
+  [20 more items...]
+```
+
+**Solution:**
+
+```markdown
+### 4. Performance Analysis
+
+**Algorithmic Complexity:**
+
+- Identify time/space complexity (Big O)
+- Find nested loops and repeated work
+- Suggest optimization opportunities
+```
+
+### ❌ Mistake: Over-Prescriptive Format
+
+**Problem:**
+
+```markdown
+**Risk N: [Description]**
+
+- **Impact:** [text]
+- **Likelihood:** [High/Medium/Low]
+- **Affected Areas:** [list]
+- **Detection:** [method]
+- **Mitigation:** [strategy]
+- **Rollback:** [procedure]
+```
+
+**Solution:**
+
+```markdown
+For each risk, describe:
+
+- What could go wrong and likelihood
+- How to detect and mitigate
+- Rollback procedure if needed
+```
+
+### ❌ Mistake: Vague Instructions
+
+**Problem:**
+
+```markdown
+Analyze the code quality and provide recommendations.
+```
+
+**Solution:**
+
+```markdown
+**Code Quality Analysis:**
+
+- Assess readability (naming, structure, documentation)
+- Evaluate maintainability (coupling, complexity, duplication)
+- Identify violations of established patterns
+```
+
+### ❌ Mistake: Project-Specific Content
+
+**Problem:**
+
+```markdown
+You are helping with ideas for Explore-TS, a TypeScript visualization tool...
+```
+
+**Solution:**
+
+```markdown
+You are helping with innovative ideas for the current project...
+```
+
+## Quality Checklist
+
+Before finalizing a command, verify:
+
+- [ ] Length is 100-250 lines
+- [ ] Role definition is clear and specific
+- [ ] Structure follows standard format
+- [ ] No unnecessary repetition
+- [ ] Output format is flexible, not rigid
+- [ ] Bullet lists are concise (one idea each)
+- [ ] Tone guidance is specific
+- [ ] Examples are minimal and relevant
+- [ ] Project-agnostic (unless intentionally scoped)
+- [ ] Each section adds unique value
+- [ ] Instructions are actionable, not theoretical
+
+## Template
+
+Use this as a starting point for new commands:
+
+```markdown
+# [Command Name]
+
+**Role Definition:** You are a [role] who [core responsibility]. Your expertise includes [key capabilities].
+
+## Purpose & Scope
+
+When to use this command:
+
+- [Primary use case]
+- [Secondary use case]
+
+Adapt depth based on:
+
+- **[Level 1]:** [Description]
+- **[Level 2]:** [Description]
+
+## Analysis Approach
+
+### 1. [First Analysis Area]
+
+[Brief description of what to analyze]
+
+Focus on:
+
+- [Key point 1]
+- [Key point 2]
+- [Key point 3]
+
+### 2. [Second Analysis Area]
+
+[Continue pattern for 3-5 areas]
+
+## Output Requirements
+
+Structure your response as:
+
+**[Section 1]:**
+
+- [Content requirement]
+- [Key elements to include]
+
+**[Section 2]:**
+
+- [Content requirement]
+- [Key elements to include]
+
+## Guidelines
+
+**Tone & Style:**
+
+- [Specific tone attribute]
+- [Communication approach]
+- [Balance guidance]
+
+**Specificity:**
+
+- [Concrete requirement]
+- [Evidence requirement]
+- [Example requirement]
+
+**Prioritization:**
+
+- [How to prioritize findings]
+- [What to emphasize]
+```
+
+---
+
+## Maintenance
+
+**When to update this guide:**
+
+- Discovered patterns from effective commands
+- Identified new anti-patterns
+- User feedback on command clarity
+- Changes to Cursor capabilities
+
+**Review frequency:** Quarterly or after every 5 new commands
+
+**Ownership:** Command library maintainers
+
+# Command Style Guide
+
+This guide defines best practices for writing effective Cursor commands.
+
+## Core Principles
+
+1. **Conciseness Over Completeness** - Target 100-150 lines. Never exceed 250 lines.
+2. **Clarity Over Comprehensiveness** - Be precise, not exhaustive.
+3. **Actionable Over Theoretical** - Focus on what to do, not abstract concepts.
+4. **Adaptable Over Prescriptive** - Provide frameworks, not rigid templates.
+5. **Consistent Structure** - Follow the standard format below.
+
+## Standard Command Structure
+
+Every command should follow this format:
+
+```markdown
+# Command Name
+
+**Role Definition:** You are a [specific role] who [core responsibility]. Your expertise includes [key capabilities].
+
+## Purpose & Scope
+
+When to use this command:
+
+- [Use case 1]
+- [Use case 2]
+- [Use case 3]
+
+Adapt depth based on context:
+
+- **Level 1:** [Scope description]
+- **Level 2:** [Scope description]
+
+## Analysis Approach
+
+### 1. [Analysis Area]
+
+[2-3 sentences describing what to analyze]
+
+Key focus:
+
+- [Specific item 1]
+- [Specific item 2]
+- [Specific item 3]
+
+### 2. [Analysis Area]
+
+[Continue pattern...]
+
+## Output Requirements
+
+Structure your response as:
+
+**[Section Name]:**
+
+- [What to include]
+- [Key elements]
+
+**[Section Name]:**
+
+- [What to include]
+- [Key elements]
+
+## Guidelines
+
+**Tone & Style:**
+
+- [Tone guidance - 2-3 bullet points]
+
+**Specificity:**
+
+- [Concrete requirements - 2-3 bullet points]
+
+**Examples:**
+
+- [When/how to use examples]
+```
+
+## Writing Rules
+
+### Length Targets
+
+- **Ideal:** 100-150 lines
+- **Maximum:** 250 lines
+- **Minimum:** 50 lines (if shorter, consider merging with another command)
+
+**Why:** Commands must be token-efficient and scannable. Longer commands dilute key messages.
+
+### Role Definition (Required)
+
+**Format:** `**Role Definition:** You are a [role] who [responsibility]...`
+
+**Good:**
+
+```markdown
+**Role Definition:** You are a refactoring strategist who designs safe, incremental code transformations across large codebases.
+```
+
+**Bad:**
+
+```markdown
+You will help with refactoring. You should be good at code.
+```
+
+**Rules:**
+
+- Use present tense ("you are", not "you will be")
+- Be specific about expertise
+- One sentence, maximum two
+- Define the perspective and authority level
+
+### Section Organization
+
+**Required Sections (in order):**
+
+1. Role Definition
+2. Purpose & Scope
+3. Analysis Approach
+4. Output Requirements
+5. Guidelines
+
+**Optional Sections:**
+
+- Examples (when helpful)
+- Common Pitfalls (for complex tasks)
+- Tool Usage (if specific tools needed)
+
+### Bulleted Lists
+
+**Good:**
+
+```markdown
+**Readability Assessment:**
+
+- Is code clear and well-structured?
+- Are names descriptive and consistent?
+- Is complex logic documented?
+```
+
+**Bad:**
+
+```markdown
+**Readability Assessment:**
+
+- Is the code clear, well-structured, easy to understand, properly formatted, and following conventions?
+- Are variables, functions, classes, interfaces, types, and all other identifiers named descriptively?
+```
+
+**Rules:**
+
+- One idea per bullet
+- Maximum 5-7 items per list
+- Keep bullets concise (under 15 words)
+- Use sub-bullets sparingly (max 2 levels deep)
+
+### Output Format Specifications
+
+**Good (Flexible):**
+
+```markdown
+Structure your review with:
+
+- Overview summarizing findings
+- Detailed issues organized by severity
+- Specific recommendations with examples
+```
+
+**Bad (Over-prescribed):**
+
+```markdown
+### ✅ **Strengths**
+
+- List what the code does well
+- Highlight good practices
+
+### ⚠️ **Issues Found**
+
+For each issue provide:
+
+- **Category**: (Type)
+- **Severity**: Level
+- **Description**: Text
+- **Location**: Lines
+- **Impact**: Description
+```
+
+**Rules:**
+
+- Describe desired content, not exact formatting
+- Allow AI to adapt to context
+- Avoid rigid templates with many required fields
+- Trust the AI to organize appropriately
+
+### Examples & Code
+
+**When to include examples:**
+
+- For clarifying ambiguous instructions
+- For demonstrating non-obvious patterns
+- For showing common mistakes to avoid
+
+**How many:**
+
+- 1-2 examples maximum per concept
+- Show "good" and "bad" when helpful
+- Keep examples brief (3-5 lines)
+
+**Format:**
+
+````markdown
+**Good:**
+
+```markdown
+Clear, concise example
+```
+
+**Bad:**
+
+```markdown
+Problematic example
+```
+````
+
+### Tone Guidance
+
+**Be specific about communication style:**
+
+**Good:**
+
+```markdown
+**Tone:**
+
+- Constructive and supportive
+- Evidence-based with specific examples
+- Acknowledge good practices
+```
+
+**Bad:**
+
+```markdown
+**Tone:**
+
+- Be nice and helpful
+```
+
+**Rules:**
+
+- Define 3-5 key tone attributes
+- Be specific, not generic
+- Match tone to command purpose
+- Include both positive and critical aspects
+
+### Repetition & DRY
+
+**Avoid repeating common instructions across commands:**
+
+❌ Don't repeat in every command:
+
+- "Search git history for context"
+- "Provide specific file paths and line numbers"
+- "Show before/after code examples"
+
+✅ Instead:
+
+- State once in relevant section
+- Reference shared conventions
+- Assume baseline AI capabilities
+
+**Common instructions to avoid:**
+
+- "Be specific" (assume this)
+- "Use code examples" (mention when NOT to)
+- "Cite evidence" (implied for analysis)
+
+### Context Adaptation
+
+**Include scope levels when appropriate:**
+
+```markdown
+Adapt depth based on context:
+
+- **Quick Review:** Focus on critical issues
+- **Deep Analysis:** Comprehensive evaluation
+- **Specific Focus:** Target [particular aspect]
+```
+
+**Rules:**
+
+- Define 2-4 depth levels
+- Make levels meaningfully different
+- Indicate when to use each level
+
+## Common Mistakes
+
+### ❌ Mistake: Excessive Detail
+
+**Problem:**
+
+```markdown
+### 4. Performance Analysis
+
+**Algorithmic Complexity:**
+For each function:
+
+- Calculate time complexity (Big O notation)
+- Calculate space complexity
+- Identify nested loops that could be optimized
+- Find repeated computations that could be cached
+- Look for O(n²) algorithms replaceable with O(n log n)
+- Check for unnecessary allocations
+- Examine recursion depth
+- Evaluate memoization opportunities
+  [20 more items...]
+```
+
+**Solution:**
+
+```markdown
+### 4. Performance Analysis
+
+**Algorithmic Complexity:**
+
+- Identify time/space complexity (Big O)
+- Find nested loops and repeated work
+- Suggest optimization opportunities
+```
+
+### ❌ Mistake: Over-Prescriptive Format
+
+**Problem:**
+
+```markdown
+**Risk N: [Description]**
+
+- **Impact:** [text]
+- **Likelihood:** [High/Medium/Low]
+- **Affected Areas:** [list]
+- **Detection:** [method]
+- **Mitigation:** [strategy]
+- **Rollback:** [procedure]
+```
+
+**Solution:**
+
+```markdown
+For each risk, describe:
+
+- What could go wrong and likelihood
+- How to detect and mitigate
+- Rollback procedure if needed
+```
+
+### ❌ Mistake: Vague Instructions
+
+**Problem:**
+
+```markdown
+Analyze the code quality and provide recommendations.
+```
+
+**Solution:**
+
+```markdown
+**Code Quality Analysis:**
+
+- Assess readability (naming, structure, documentation)
+- Evaluate maintainability (coupling, complexity, duplication)
+- Identify violations of established patterns
+```
+
+### ❌ Mistake: Project-Specific Content
+
+**Problem:**
+
+```markdown
+You are helping with ideas for Explore-TS, a TypeScript visualization tool...
+```
+
+**Solution:**
+
+```markdown
+You are helping with innovative ideas for the current project...
+```
+
+## Quality Checklist
+
+Before finalizing a command, verify:
+
+- [ ] Length is 100-250 lines
+- [ ] Role definition is clear and specific
+- [ ] Structure follows standard format
+- [ ] No unnecessary repetition
+- [ ] Output format is flexible, not rigid
+- [ ] Bullet lists are concise (one idea each)
+- [ ] Tone guidance is specific
+- [ ] Examples are minimal and relevant
+- [ ] Project-agnostic (unless intentionally scoped)
+- [ ] Each section adds unique value
+- [ ] Instructions are actionable, not theoretical
+
+## Template
+
+Use this as a starting point for new commands:
+
+<template>
+# [Command Name]
+
+**Role Definition:** You are a [role] who [core responsibility]. Your expertise includes [key capabilities].
+
+## Purpose & Scope
+
+When to use this command:
+
+- [Primary use case]
+- [Secondary use case]
+
+Adapt depth based on:
+
+- **[Level 1]:** [Description]
+- **[Level 2]:** [Description]
+
+## Analysis Approach
+
+### 1. [First Analysis Area]
+
+[Brief description of what to analyze]
+
+Focus on:
+
+- [Key point 1]
+- [Key point 2]
+- [Key point 3]
+
+### 2. [Second Analysis Area]
+
+[Continue pattern for 3-5 areas]
+
+## Output Requirements
+
+Structure your response as:
+
+**[Section 1]:**
+
+- [Content requirement]
+- [Key elements to include]
+
+**[Section 2]:**
+
+- [Content requirement]
+- [Key elements to include]
+
+## Guidelines
+
+**Tone & Style:**
+
+- [Specific tone attribute]
+- [Communication approach]
+- [Balance guidance]
+
+**Specificity:**
+
+- [Concrete requirement]
+- [Evidence requirement]
+- [Example requirement]
+
+**Prioritization:**
+
+- [How to prioritize findings]
+- [What to emphasize]
+</template>
