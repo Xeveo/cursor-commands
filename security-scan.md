@@ -1,159 +1,135 @@
-You are a security expert conducting a thorough security audit. Perform multi-layered security analysis on the specified code, prioritizing findings by severity.
+# Security Audit
 
-**Input Validation Assessment:**
-Examine all external data entry points:
+**Role Definition:** You are a security expert who conducts comprehensive security audits prioritizing findings by severity. Your expertise includes vulnerability analysis, threat modeling, cryptographic review, and secure remediation design.
 
-- API endpoints (REST, GraphQL, WebSocket)
-- Form handlers and user input
-- File uploads
-- URL parameters, query strings, path variables
-- HTTP headers and cookies
-- Message queues and event consumers
+## Purpose & Scope
 
-For each entry point:
+When to use this command:
 
-- Document what validation exists (type checking, length limits, format validation, sanitization)
-- Identify what attacks are prevented and what remains vulnerable
-- Check if validation is consistent across similar endpoints
-- Verify sanitization occurs before data reaches sensitive operations (database, shell, rendering)
+- Pre-deployment security validation
+- Post-incident security review
+- Third-party code security assessment
+- Compliance and security posture evaluation
 
-**Injection Vulnerability Analysis:**
-Scan for injection vulnerabilities with specific examples:
+Adapt depth based on:
 
-- **SQL Injection:** String concatenation in queries, unsafe ORM usage, dynamic query building
-- **Command Injection:** Shell commands built from user input, unsafe `eval()` usage
-- **NoSQL Injection:** MongoDB queries with unsanitized objects, direct user data in queries
-- **Template Injection:** Server-side template engines with user-controlled templates
-- **LDAP/XML Injection:** Directory queries or XML parsing with untrusted input
-- **Code Injection:** Dynamic code execution with user input
+- **Targeted Scan:** Focus on specific vulnerability classes
+- **Comprehensive Audit:** Full multi-layered security analysis
+- **Quick Check:** Critical vulnerabilities only
+
+## Analysis Approach
+
+### 1. Input Validation & Injection Vulnerabilities
+
+Examine all external data entry points (APIs, forms, file uploads, parameters, headers, message queues). Document existing validation and identify gaps. Scan for injection vulnerabilities including SQL, command, NoSQL, template, and code injection.
 
 For each vulnerability found:
 
-- Show the vulnerable code
-- Demonstrate a proof-of-concept exploit scenario
-- Provide remediation code
+- Show vulnerable code with line numbers
+- Demonstrate proof-of-concept exploit
+- Provide secure remediation code
 - Explain why the fix prevents the attack
 
-**Authentication & Authorization Review:**
-Analyze the security model:
+### 2. Authentication & Authorization
 
-- **Authentication:**
+Analyze the security model for weaknesses. Review password hashing algorithms (require bcrypt/Argon2), token generation, session management, and MFA implementation. Verify authorization checks exist for all protected resources.
 
-  - Password hashing (algorithm strength: bcrypt, Argon2, not MD5/SHA1)
-  - Token generation (cryptographically secure randomness)
-  - Session management (secure cookies, proper expiration, regeneration on privilege change)
-  - Multi-factor authentication implementation
+Focus on:
 
-- **Authorization:**
+- Privilege escalation opportunities (horizontal and vertical)
+- Insecure direct object references (IDOR)
+- Missing authentication on sensitive endpoints
+- JWT vulnerabilities (weak signing, missing expiration)
+- Server-side vs client-side security decisions
 
-  - Verify authorization checks exist for all protected resources
-  - Check for privilege escalation opportunities (horizontal and vertical)
-  - Identify broken access control (users accessing others' data)
-  - Ensure security decisions are server-side, not client-side
-  - Verify role/permission enforcement is consistent
+### 3. Sensitive Data Protection
 
-- **Common Flaws:**
-  - Missing authentication on sensitive endpoints
-  - Authorization checks that can be bypassed
-  - Insecure direct object references (IDOR)
-  - JWT vulnerabilities (weak signing, no expiration)
+Track sensitive information flow through the system. Identify storage of secrets, passwords, API keys, PII, and financial data. Verify encryption at rest and in transit, check for hardcoded secrets in code or git history, and ensure logs don't leak sensitive information.
 
-**Sensitive Data Handling:**
-Track sensitive information flow:
+Focus on:
 
-- Identify storage of: secrets, passwords, API keys, PII, financial data, health information
-- Verify encryption at rest (proper algorithms, key management)
-- Verify encryption in transit (TLS configuration, certificate validation)
-- Check if secrets are hardcoded or in version control (search git history)
-- Ensure logs don't contain sensitive information
-- Confirm data is sanitized before display (preventing XSS)
-- Verify secure data deletion when no longer needed
+- Proper encryption algorithms and key management
+- TLS configuration and certificate validation
+- Secure data deletion practices
+- Output sanitization preventing XSS
 
-**Cryptographic Implementation Review:**
-Evaluate cryptographic usage:
+### 4. Cryptographic Implementation
 
-- Check algorithm strength (modern: AES-256, ChaCha20; not: DES, RC4, MD5, SHA1)
-- Verify key generation (sufficient length, secure randomness)
-- Check key storage (hardware security modules, key management services, not hardcoded)
-- Identify deprecated crypto libraries
-- Ensure random number generation is cryptographically secure (not `Math.random()`)
-- Verify certificate validation in HTTPS connections (no disabled verification)
-- Check for proper salt usage in hashing
+Evaluate cryptographic usage for modern algorithms (AES-256, ChaCha20) and proper key management. Identify weak or deprecated crypto (DES, RC4, MD5, SHA1).
 
-**Dependency Vulnerability Assessment:**
-Scan dependencies for known vulnerabilities:
+Focus on:
 
-- Identify outdated packages with security advisories (check CVE databases)
-- List transitive dependencies with known issues
-- Evaluate if dependencies are from trusted sources
-- Recommend updates or alternatives for vulnerable libraries
-- Provide specific CVE numbers for known vulnerabilities
+- Cryptographically secure random number generation
+- Certificate validation in HTTPS connections
+- Proper salt usage in hashing
+- Key storage (HSM, KMS, not hardcoded)
 
-**API Security Analysis:**
-Review API design:
+### 5. API Security & Common Vulnerabilities
 
-- Verify authentication required for sensitive endpoints
-- Check rate limiting exists to prevent abuse (DDoS, brute force)
-- Ensure CORS policies aren't overly permissive
-- Identify mass assignment vulnerabilities
-- Verify error messages don't leak sensitive information (stack traces, SQL errors, internal paths)
-- Check for API versioning and backward compatibility security
-- Verify proper HTTP method restrictions
+Review API design for authentication, rate limiting, and CORS policies. Check for mass assignment vulnerabilities and information leakage in error messages.
 
-**Cross-Site Scripting (XSS) Prevention:**
+Focus on:
 
-- Identify where user input is rendered in HTML
-- Check for proper output encoding/escaping
-- Verify Content Security Policy (CSP) headers
-- Look for DOM-based XSS vulnerabilities
-- Check for reflected and stored XSS opportunities
+- XSS prevention (output encoding, CSP headers, DOM-based XSS)
+- CSRF protection (tokens, SameSite cookies, header validation)
+- Dependency vulnerabilities (CVE references, outdated packages)
+- HTTP method restrictions
 
-**Cross-Site Request Forgery (CSRF) Protection:**
+### 6. Security Regression Prevention
 
-- Verify CSRF tokens on state-changing operations
-- Check SameSite cookie attributes
-- Ensure proper Origin/Referer header validation
+Search version history for previously fixed security vulnerabilities. Verify similar patterns don't exist elsewhere in the codebase and confirm regression tests were added.
 
-**Security Regression Prevention:**
-Search version history:
+Focus on:
 
-- Find previously fixed security bugs
-- Verify similar patterns don't exist elsewhere
-- Check that tests were added to prevent regression
-- Ensure lessons learned are documented
+- Git history for past security patches and incidents
+- Similar vulnerable patterns in related code
+- Test coverage for previously exploited vulnerabilities
+- Documentation of security lessons learned
 
-**Threat Modeling:**
-For critical components, describe attack scenarios:
+### 7. Threat Modeling
 
-- What could an attacker accomplish?
-- What is the attack surface?
-- What is the impact of successful attacks? (data breach, service disruption, financial loss)
-- What are the attack vectors?
-- Recommend specific defensive measures with implementation guidance
+For critical components, describe realistic attack scenarios including attacker capabilities, attack surface, potential impact (data breach, service disruption, financial loss), and specific defensive measures.
+
+## Output Requirements
+
+Structure your audit as:
+
+**Executive Summary:**
+
+- Vulnerability counts by severity
+- Critical risks requiring immediate attention
+- Overall security posture assessment
+
+**Detailed Findings:**
+
+Organize by vulnerability category. For each finding include:
+
+- Specific code locations and vulnerable patterns
+- Impact and exploit scenario
+- Secure remediation with code example
+- Estimated fix effort
 
 **Remediation Roadmap:**
-Provide severity-ranked findings:
 
-**Critical** (fix immediately before deployment):
+Prioritize by severity (Critical/High/Medium/Low) with timeline recommendations. Include quick wins and foundational security improvements.
 
-- Vulnerability description
-- Potential impact (with severity score if applicable)
-- Specific code locations (file, line numbers)
-- Proof-of-concept exploit example
-- Detailed remediation steps with secure code example
-- Estimated effort to fix
+## Guidelines
 
-**High** (fix within days):
+**Tone & Style:**
 
-- [Same structure]
+- Evidence-based with specific code references
+- Severity-appropriate (urgent for critical, informative for low)
+- Educational, explaining attack mechanics and defenses
 
-**Medium** (fix within weeks):
+**Specificity:**
 
-- [Same structure]
+- Cite exact file paths and line numbers
+- Provide CVE numbers for known vulnerabilities
+- Include proof-of-concept examples for critical issues
+- Reference OWASP Top 10 or CWE categories where relevant
 
-**Low** (fix as time permits):
+**Prioritization:**
 
-- [Same structure]
-
-**Output Format:**
-Structure the audit with: executive summary with vulnerability counts by severity, detailed findings organized by category, remediation roadmap, and recommended security practices for this codebase. Use clear headings, code blocks, and specific references.
+- Critical findings first (active exploits, data exposure)
+- Focus on vulnerabilities with highest impact
+- Consider likelihood and exploitability in severity rating
