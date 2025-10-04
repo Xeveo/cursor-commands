@@ -35,16 +35,19 @@ Focus on:
 Consider ideas across these domains:
 
 **Core Capabilities:**
+
 - Advanced analysis and intelligence features
 - Pattern detection and automation opportunities
 - Emerging technology integration (AI, real-time, cloud)
 
 **User Experience:**
+
 - Enhanced visualization and interaction patterns
 - Workflow integration and productivity improvements
 - Accessibility and performance optimization
 
 **Ecosystem:**
+
 - Collaboration and team features
 - Extensibility through plugins or integrations
 - Community and open source opportunities
@@ -65,16 +68,19 @@ Focus on:
 Structure your ideas to include:
 
 **Core Description:**
+
 - Compelling name and category
 - Problem being solved
 - Innovative solution approach
 
 **Value and Implementation:**
+
 - Impact on user productivity or experience
 - Feasibility considerations
 - Architecture or technical notes
 
 Organize multiple ideas by:
+
 - Category grouping or priority ranking
 - Progressive complexity (quick wins to ambitious)
 - Related ideas that build on each other
@@ -82,17 +88,20 @@ Organize multiple ideas by:
 ## Guidelines
 
 **Tone & Style:**
+
 - Enthusiastic yet pragmatic
 - Focus on user value, not just technical novelty
 - Acknowledge tradeoffs and constraints
 
 **Ideation Process:**
+
 - Start with user pain points, not solutions
 - Think 10x improvement, not just incremental
 - Leverage unique project strengths
 - Consider what's possible with existing architecture
 
 **Balance:**
+
 - Mix quick wins with ambitious long-term ideas
 - Combine proven patterns with novel approaches
 - Consider both technical and non-technical innovations

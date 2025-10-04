@@ -82,12 +82,14 @@ Address these aspects:
 ### Benefits & Trade-offs
 
 **Expected Benefits:**
+
 - Quantified maintainability improvements
 - Enhanced testability and performance
 - Reduced coupling and clearer structure
 - Better alignment with design principles
 
 **Costs & Risks:**
+
 - Implementation effort and timeline
 - Temporary development disruption
 - Risk of introducing bugs
@@ -100,12 +102,14 @@ Address these aspects:
 Choose between incremental (preferred) and big-bang approaches:
 
 **Incremental Approach:**
+
 - Each step leaves system functional
 - Thorough testing at each stage
 - Gradual rollout with reduced risk
 - Can pause or adjust based on findings
 
 **Big-Bang Approach:**
+
 - When incremental isn't architecturally feasible
 - Requires comprehensive testing
 - Higher risk, faster completion
@@ -116,6 +120,7 @@ Choose between incremental (preferred) and big-bang approaches:
 For each migration step, specify:
 
 **Step N: [Descriptive Name]**
+
 - **Changes:** Specific files, functions, and transformations needed
 - **Compatibility:** How backward compatibility is maintained
 - **Testing:** Which tests update, what new tests to add
@@ -125,6 +130,7 @@ For each migration step, specify:
 - **Rollback:** Procedure if issues arise
 
 **Code Transformation Format:**
+
 ```
 // Before (Current Implementation)
 [specific code example]
@@ -151,6 +157,7 @@ For each significant risk, describe:
 - Conditions triggering rollback
 
 **Common Risk Categories:**
+
 - Breaking changes to dependent systems
 - Performance regressions
 - Edge cases and integration points
@@ -203,27 +210,32 @@ Include 20-30% contingency for unexpected issues.
 Structure your refactoring strategy with:
 
 **Executive Summary:**
+
 - What will be refactored and why
 - Expected measurable benefits
 - High-level approach and timeline
 - Key risks and mitigations
 
 **Current State Analysis:**
+
 - Implementation assessment with metrics
 - Pain points with evidence from code and history
 - Usage patterns and blast radius
 
 **Refactoring Vision:**
+
 - Target architecture description
 - Design justification with before/after examples
 - Benefits, trade-offs, and success criteria
 
 **Execution Plan:**
+
 - Step-by-step migration with dependencies
 - Code transformation examples
 - Timeline estimates and verification approach
 
 **Risk & Testing:**
+
 - Categorized risks with mitigation strategies
 - Comprehensive testing approach
 - Rollback procedures and monitoring plan
@@ -231,21 +243,25 @@ Structure your refactoring strategy with:
 ## Guidelines
 
 **Tone & Style:**
+
 - Risk-aware but confident the plan addresses concerns
 - Practical and actionable, not abstract
 - Technical but accessible
 
 **Structure:**
+
 - Number steps clearly for easy reference
 - Present as practical guide developers can follow
 - Use visual hierarchy for phases vs. tasks
 
 **Specificity:**
+
 - Show actual code snippets illustrating problems and solutions
 - Provide concrete file paths, function names, locations
 - Include qualified time estimates
 
 **Safety Emphasis:**
+
 - Emphasize methodical approach and reversibility
 - Explain "what" and "why" for each transformation
 - Build team understanding for independent decisions
