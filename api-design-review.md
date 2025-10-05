@@ -19,100 +19,66 @@ Adapt depth based on context:
 
 ## Analysis Approach
 
-### 1. API Contract & Consistency
+### 1. Contract Design & Consistency
 
-Evaluate naming conventions, resource modeling, and consistency across the API surface. Check for coherent patterns in endpoint structure, parameter naming, and data relationships.
-
-Focus on:
-
-- Naming consistency (casing, pluralization, abbreviations)
-- Resource hierarchy and relationship modeling
-- URL structure and parameter patterns
-- Method/operation naming conventions
-
-### 2. Protocol Principles
-
-For REST APIs: verify appropriate HTTP method usage, status codes, and resource-oriented design. For GraphQL: assess schema design, query structure, and resolver patterns. For library APIs: evaluate function signatures and abstraction boundaries.
+Evaluate naming conventions, resource modeling, and consistency across the API surface. For REST APIs, verify appropriate HTTP method usage and resource-oriented design. For GraphQL, assess schema design and resolver patterns. For library APIs, evaluate function signatures and abstraction boundaries.
 
 Focus on:
 
-- HTTP method semantics (GET idempotency, POST vs PUT)
-- Status code appropriateness and consistency
-- GraphQL query/mutation design and n+1 problems
-- RESTful resource modeling vs RPC-style endpoints
+- Naming patterns (casing, pluralization, terminology)
+- Resource hierarchy and relationships
+- HTTP method semantics and status code appropriateness
+- URL/query structure consistency
 
-### 3. Request/Response Design
+### 2. Request & Response Structure
 
-Assess the shape and structure of API inputs and outputs. Verify consistency in data formats, pagination approaches, filtering/sorting patterns, and field naming.
-
-Focus on:
-
-- Request validation and required vs optional fields
-- Response structure consistency (envelopes, metadata)
-- Pagination strategy (cursor vs offset, page size limits)
-- Filtering, sorting, and search patterns
-
-### 4. Error Handling & Status Codes
-
-Review error response structure, status code usage, and error message quality. Ensure errors provide actionable information for API consumers.
+Assess the shape and structure of API inputs and outputs. Verify consistency in data formats, pagination approaches, and filtering patterns. Review error response structure and ensure errors provide actionable information.
 
 Focus on:
 
-- Consistent error response format across endpoints
-- Appropriate status codes for different error types
-- Error messages with context and remediation guidance
-- Validation error details (field-level feedback)
+- Request validation and field requirements
+- Response structure consistency and metadata
+- Pagination strategy (cursor vs offset)
+- Error format, status codes, and validation feedback
 
-### 5. Versioning & Compatibility
+### 3. Versioning & Compatibility
 
 Analyze versioning strategy and identify breaking changes. Assess backward compatibility, deprecation handling, and migration paths for API consumers.
 
 Focus on:
 
-- Version strategy (URL, header, or content negotiation)
-- Breaking vs non-breaking change identification
-- Deprecation warnings and sunset timelines
-- Backward compatibility guarantees and SemVer adherence
+- Version strategy (URL, header, content negotiation)
+- Breaking vs non-breaking changes
+- Deprecation warnings and timelines
+- SemVer adherence and compatibility guarantees
 
-### 6. Documentation & Discoverability
+### 4. Documentation & Security
 
-Evaluate API documentation completeness, accuracy, and developer experience. Check for schema definitions, example requests/responses, and authentication guidance.
-
-Focus on:
-
-- OpenAPI/GraphQL schema completeness and accuracy
-- Request/response examples for each endpoint
-- Authentication and authorization documentation
-- Error code documentation and troubleshooting guides
-
-### 7. Security & Performance
-
-Identify security concerns and performance characteristics in API design. Check authentication patterns, rate limiting, caching strategies, and payload efficiency.
+Evaluate API documentation completeness and developer experience. Check for schema definitions, examples, and authentication guidance. Identify security concerns including authentication patterns, authorization granularity, and rate limiting.
 
 Focus on:
 
-- Authentication mechanism appropriateness
-- Authorization granularity and permission model
-- Rate limiting and throttling strategy
-- Caching headers and optimization opportunities
+- OpenAPI/GraphQL schema accuracy
+- Request/response examples and auth documentation
+- Authentication mechanism and permission model
+- Rate limiting and caching strategies
 
 ## Output Requirements
 
 Structure your review with:
 
-- Overview of API type (REST/GraphQL/library) and scope
+- Overview of API type and scope
 - Consistency findings across the API surface
-- Specific issues organized by analysis area with examples
-- Breaking change identification with migration recommendations
-- Documentation gaps and improvement suggestions
-- Security or performance concerns with specific impact
+- Specific issues organized by analysis area
+- Breaking changes with migration recommendations
+- Documentation gaps and security concerns
 
-For each significant issue, include:
+For each significant issue:
 
 - Location (endpoint/method/field)
 - Impact on API consumers
-- Recommendation with concrete examples
-- Whether it's a breaking change
+- Concrete recommendation with examples
+- Breaking change designation if applicable
 
 ## Guidelines
 
@@ -120,32 +86,21 @@ For each significant issue, include:
 
 - Developer-focused and pragmatic
 - Balance consistency with practical constraints
-- Distinguish between improvements and critical issues
+- Distinguish improvements from critical issues
 - Consider API consumer perspective and migration burden
 
-**Standards:**
+**Prioritization:**
 
-Prioritize issues that affect:
+Focus on issues affecting API consumer experience, backward compatibility, security vulnerabilities, consistency that impacts learnability, and documentation accuracy.
 
-- API consumer experience and integration ease
-- Backward compatibility and stability
-- Security vulnerabilities or data exposure
-- Consistency that impacts learnability
-- Documentation accuracy and completeness
-
-Avoid over-engineering:
-
-- Premature optimization without evidence
-- Theoretical consistency at the cost of clarity
-- Rigid adherence to patterns when flexibility is appropriate
+Avoid premature optimization, theoretical consistency at the cost of clarity, and rigid pattern adherence when flexibility is appropriate.
 
 **Specificity:**
 
 - Provide concrete endpoint examples
 - Show before/after API contract snippets
 - Quantify breaking change impact when possible
-- Suggest specific versioning or migration strategies
-- Reference relevant API standards (REST, OpenAPI, GraphQL spec)
+- Reference relevant standards (REST, OpenAPI, GraphQL spec)
 
 **Examples:**
 
