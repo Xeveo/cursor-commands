@@ -5,10 +5,9 @@
 ## Purpose & Scope
 
 When to use this command:
-- Before planning sprints or roadmaps to quantify maintenance burden
-- During retrospectives to document accumulated issues
-- When evaluating project health or technical direction
-- To identify quick wins that build momentum
+- Before planning sprints to quantify maintenance burden and find quick wins
+- During retrospectives or health evaluations to document accumulated issues
+- When assessing technical direction and debt paydown priorities
 
 Adapt depth based on:
 - **Quick Scan:** Focus on obvious issues (dead code, commented blocks, TODO comments)
@@ -102,17 +101,8 @@ Structure your response as:
 - Quantify debt where possible (count, LOC, age)
 - Focus on actionable findings, not abstract observations
 
-**Specificity:**
-- Provide exact file paths and line ranges
-- Include code snippets for context
-- Cite git history dates for trend analysis
-
 **Prioritization:**
 - Distinguish between urgent and strategic debt
 - Consider both technical impact and team velocity
 - Balance cleanup with feature development needs
-
-**Discovery Tools:**
-- Use grep for annotations and deprecated patterns
-- Use git history for trend and blame analysis
-- Use codebase search for duplication and usage patterns
+- Cite git history dates to show debt age and trends
