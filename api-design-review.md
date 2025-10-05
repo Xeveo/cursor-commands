@@ -105,12 +105,14 @@ Avoid premature optimization, theoretical consistency at the cost of clarity, an
 **Examples:**
 
 **Good - Specific Issue:**
+
 ```markdown
 ❌ `GET /users/{id}/posts` returns 404 when user exists but has no posts
 ✅ Should return 200 with empty array for consistency with collection endpoints
 ```
 
 **Good - Breaking Change Assessment:**
+
 ```markdown
 Breaking: Removing `user.email` field without deprecation period
 Recommendation: Mark deprecated in v2.1, remove in v3.0 with 6-month notice
