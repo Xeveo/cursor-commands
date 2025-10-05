@@ -10,7 +10,6 @@ When to use this command:
 - Planning schema changes or major migrations
 - Evaluating ORM usage and relationship patterns
 - Assessing data integrity and validation strategies
-- Pre-production schema readiness review
 
 Adapt depth based on:
 
@@ -20,16 +19,16 @@ Adapt depth based on:
 
 ## Analysis Approach
 
-### 1. Schema Design Patterns
+### 1. Schema Design & Relationships
 
 Evaluate normalization level, relationship modeling, and design patterns appropriate for the use case.
 
 Focus on:
 
 - Normalization vs denormalization tradeoffs for access patterns
-- Table structure reflecting domain model clearly
-- Appropriate use of junction tables, inheritance patterns
-- Schema flexibility for anticipated changes
+- Table structure and relationships reflecting domain model
+- Appropriate use of junction tables and inheritance patterns
+- Cascade rules, orphaned record prevention
 - Anti-patterns (EAV, excessive polymorphism, god tables)
 
 ### 2. Data Integrity & Constraints
@@ -42,9 +41,9 @@ Check for:
 - NOT NULL, UNIQUE, and CHECK constraints
 - Appropriate default values and computed columns
 - Missing constraints that could prevent invalid states
-- Validation happening only in application code
+- Critical validation happening only in application code
 
-### 3. Index Strategy
+### 3. Indexing & Performance
 
 Assess indexing choices for query patterns, write performance, and maintenance overhead.
 
@@ -54,98 +53,48 @@ Evaluate:
 - Composite index column ordering for selectivity
 - Missing indexes causing table scans
 - Over-indexing impacting write performance
-- Covering indexes for frequent queries
-- Partial/filtered indexes for subset queries
+- Covering and partial indexes for frequent queries
 
-### 4. Relationship Design
-
-Examine how entities relate and whether patterns match cardinality requirements.
-
-Analyze:
-
-- One-to-many, many-to-many, and one-to-one relationships
-- Bidirectional navigation requirements
-- Cascade delete/update rules appropriateness
-- Orphaned record prevention
-- Self-referential relationships (hierarchies, graphs)
-
-### 5. ORM Usage Patterns
+### 4. ORM Usage Patterns
 
 Review ORM configuration, query patterns, and common pitfalls in object-relational mapping.
 
 Look for:
 
-- N+1 query problems (lazy loading in loops)
-- Eager loading strategy for related entities
-- Appropriate use of lazy vs eager loading
-- Select N+1 detection and prevention
+- N+1 query problems and loading strategy issues
+- Appropriate eager vs lazy loading configuration
 - Projection queries to avoid fetching full entities
 - Proper transaction boundaries and optimistic locking
 
-### 6. Migration Safety
+### 5. Migrations & Data Types
 
-Evaluate migration design for data integrity, rollback capability, and production safety.
+Evaluate migration safety and column type choices for production readiness.
 
 Review:
 
-- Breaking vs non-breaking changes
-- Data transformation correctness during migrations
-- Rollback procedures and reversibility
+- Breaking vs non-breaking changes and rollback procedures
+- Data transformation correctness
 - Zero-downtime deployment compatibility
-- Handling large tables without locks
-- Migration testing with production-like data
-
-### 7. Data Types & Storage
-
-Assess column types, sizes, and storage efficiency for the data being modeled.
-
-Consider:
-
-- Appropriate precision for numeric types
-- Text vs VARCHAR sizing and storage implications
-- ENUM/lookup tables vs string columns
-- JSON columns vs normalized tables
-- Timestamp storage and timezone handling
-- UUID vs auto-increment tradeoffs
+- Appropriate precision and types for data being stored
+- Timestamp storage, JSON usage, UUID vs auto-increment
 
 ## Output Requirements
 
-Structure your response with:
+Provide assessment with:
 
-**Schema Assessment:**
-
-- Overall design quality and adherence to principles
-- Key strengths in current design
-- Critical issues requiring immediate attention
-
-**Detailed Findings:**
-
-- Issues organized by category with specific examples
-- Schema diagrams or relationship descriptions if helpful
-- Current design vs recommended patterns
-- Code references for ORM usage problems
-
-**Recommendations:**
-
-- Prioritized by risk and impact (Critical/Important/Improvement)
-- Specific migration steps for schema changes
-- ORM configuration adjustments
-- New constraints, indexes, or relationships to add
-
-**Migration Strategy:**
-
-- Safe implementation approach for changes
-- Deployment sequence for breaking changes
-- Rollback procedures and data safety measures
-- Testing approach for data transformations
+- Overall design quality, critical issues, and key strengths
+- Specific findings with table, column, and relationship examples
+- Prioritized recommendations (Critical/Important/Improvement)
+- DDL examples for constraints, indexes, or schema changes
+- Migration approach for breaking changes with rollback procedures
 
 ## Guidelines
 
 **Tone & Style:**
 
 - Pragmatic about tradeoffs between purity and practicality
-- Clear about risks of current design vs changes
-- Respectful of existing design decisions while noting improvements
+- Clear about risks of current design vs proposed changes
+- Respectful of existing decisions while noting improvements
 
 **Specificity:**
 
@@ -159,34 +108,32 @@ Structure your response with:
 - Flag data integrity risks as highest priority
 - Balance normalization theory with query performance needs
 - Consider migration effort vs benefit
-- Account for application coupling to current schema
 
 ## Examples
 
-**Good constraint usage:**
+**Constraint enforcement:**
 
 ```sql
--- Ensures business rule at database level
+-- Ensures business rules at database level
 CHECK (start_date < end_date)
-CHECK (quantity > 0)
 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ```
 
-**Index for common query:**
+**Index for query pattern:**
 
 ```sql
--- Query: WHERE status = 'active' ORDER BY created_at DESC
+-- Optimizes: WHERE status = 'active' ORDER BY created_at DESC
 CREATE INDEX idx_orders_status_created ON orders(status, created_at DESC);
 ```
 
-**Preventing N+1 in ORM:**
+**ORM N+1 prevention:**
 
 ```python
-# Bad: N+1 queries
+# Bad: Separate query for each user's orders
 users = User.query.all()
 for user in users:
-    print(user.orders)  # Separate query each iteration
+    print(user.orders)
 
-# Good: Eager loading
+# Good: Single query with JOIN
 users = User.query.options(joinedload(User.orders)).all()
 ```
