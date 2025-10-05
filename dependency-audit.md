@@ -87,7 +87,7 @@ Structure your response as:
 
 **Optimization Opportunities:**
 
-- Unused dependencies to remove with estimated size savings
+- Unused dependencies to remove with size savings
 - Lighter alternatives with trade-off analysis
 - Packages safe to upgrade with benefits
 
@@ -114,20 +114,15 @@ Structure your response as:
 **Prioritization:**
 
 - Security vulnerabilities first, by severity
-- Unused dependencies by size impact
-- Alternatives by effort-to-benefit ratio
+- Then unused dependencies by size impact
+- Finally alternatives by effort-to-benefit ratio
 
 **Specificity:**
 
 - Cite exact package names and versions
 - Quantify size impacts when relevant
-- Link to CVE details or package documentation
-
-**Context Awareness:**
-
-- Consider project type (library vs application)
-- Account for stability needs vs cutting-edge
-- Respect locked versions with documented reasons
+- Include effort estimates for migrations
+- Match recommendations to project context (library vs app, stability needs)
 
 ## Examples
 
@@ -144,19 +139,3 @@ Effort: ~4 hours | Bundle savings: ~2.2MB
 ```markdown
 Consider replacing moment with something smaller.
 ```
-
-## Common Pitfalls
-
-**Avoid:**
-
-- Recommending bleeding-edge versions for stable projects
-- Suggesting removal of dependencies without checking usage
-- Treating all outdated packages equally (major vs patch lag)
-- Ignoring the cost of migration in recommendations
-
-**Instead:**
-
-- Match update urgency to project stability requirements
-- Verify unused dependencies via static analysis
-- Prioritize by risk (security > breaking changes > optimization)
-- Include effort estimates for significant changes
