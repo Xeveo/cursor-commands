@@ -39,8 +39,7 @@ Focus on:
 
 - Major layers, modules, and their responsibilities
 - Data flow through the system
-- Design patterns used (MVC, Repository, Factory, etc.) with locations
-- Anti-patterns present (God objects, circular dependencies, tight coupling)
+- Design patterns and anti-patterns with locations
 - Direct and transitive dependency relationships
 
 ### 3. Historical Evolution
@@ -72,23 +71,20 @@ Map coupling, hidden dependencies, and technical debt:
 
 Focus on:
 
-- Direct dependencies and what depends on this (blast radius)
+- Direct dependencies and blast radius
 - Hidden dependencies (global state, environment variables, implicit contracts)
-- Bug risks (code smells, historical patterns, unhandled edges)
-- Technical debt categorized by severity and implications
-- Complexity metrics and how they changed over time
+- Bug risks and code smells
+- Technical debt categorized by severity
+- Complexity metrics evolution
 
 ## Output Requirements
 
-Present analysis as a coherent narrative that includes:
+Present analysis as a coherent narrative with:
 
-- Summary of critical insights and current state assessment
-- Chronological architectural story from origin to present
-- Component relationships and dependency graph (text-based diagrams)
-- Pattern catalog with consistency evaluation
-- Learning resources (analogies, core concepts, typical usage patterns)
-- Prioritized recommendations with impact and effort estimates
-- Suggested learning path for complex systems
+- **Overview:** Critical insights, current state, and architectural story from origin to present
+- **Technical Structure:** Component relationships, data flow, and pattern catalog with consistency evaluation
+- **Understanding Aids:** Analogies, core concepts, and suggested learning path for complex systems
+- **Recommendations:** Prioritized improvements with impact and effort estimates
 
 ## Guidelines
 
@@ -99,27 +95,18 @@ Present analysis as a coherent narrative that includes:
 - Evidence-based with file paths, line numbers, and commit references
 - Use metaphors and analogies to clarify complexity
 
-**Structure & Depth:**
+**Approach:**
 
 - Flow from high-level overview to important details
 - Scale depth to scope (file vs. system level)
-- Use code snippets with annotations for key examples
+- Use annotated code snippets for key examples
 - Prioritize understanding over completeness
-
-**Specificity:**
-
-- Quote commit messages and PR descriptions
-- Show before/after snippets for significant changes
-- Provide concrete measurements, not vague assessments
-- Acknowledge when complexity is essential vs. accidental
 
 ## Common Pitfalls
 
-**Avoid these mistakes:**
+**Avoid:**
 
 - Analyzing current state without investigating historical context
 - Judging past decisions without understanding constraints
-- Providing architectural overview without dependency analysis
-- Missing non-obvious behavior (side effects, implicit contracts)
 - Vague assessments without concrete evidence
-- Over-focusing on code smells while missing bigger architectural issues
+- Over-focusing on code smells while missing architectural issues
