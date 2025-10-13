@@ -72,6 +72,11 @@ Structure your guide to include:
 - Common mistakes and counterintuitive behaviors
 - Current patterns to follow vs. legacy patterns to avoid
 
+**Further Exploration:**
+- Suggest 3-5 topics related to major points covered
+- Frame each as a focused area suitable for deeper exploration
+- Indicate why each topic is relevant to understanding the system
+
 ## Guidelines
 
 **Tone & Style:**
